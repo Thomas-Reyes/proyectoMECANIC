@@ -7,5 +7,4 @@ export 'package:vidaomuerte/screens/informacion_Auto.dart';
 export 'package:vidaomuerte/screens/onboarding_Screens.dart';
 export 'package:vidaomuerte/screens/perfil_Screens.dart';
 export 'package:vidaomuerte/screens/ubicacion_Screen.dart';
-export 'package:vidaomuerte/widgets/widget.dart';
 export 'package:vidaomuerte/screens/ingresar_Auto.dart';

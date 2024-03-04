@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   image_carousel_gallery: ^1.0.0 # bliblioteca carrusel con imagen debajo
   flutter_onboarding_slider: ^1.0.11 # bliblioteca onboarding inicial
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:
