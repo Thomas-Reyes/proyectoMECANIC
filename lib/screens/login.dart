@@ -35,8 +35,9 @@ Future<bool> login(String username, String password) async {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _usernameController =
+      TextEditingController(text: 'thomas.alonsoreyes@gmail.com');
+  final _passwordController = TextEditingController(text: 'Thoma97!');
 
 //userService debe llamar al servicio que en esta oportunidad es la clase LoginService, que es de la carpeta services,del archivo user.dart
   final userService = LoginService();
@@ -118,15 +119,16 @@ class LoginScreenState extends State<LoginScreen> {
                           //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
 
                           //alerta de error con AlertDialog
-                          mostrarErrorConAlertDialog(context, response.message);
+                          mostrarErrorConAlertDialog(
+                              context, "Error de inicio de sesión");
                           return;
                         }
                         // ignore: use_build_context_synchronously
                         mostrarErrorConAlertDialog(context, 'Error inesperado');
                       },
                       child: Text('Iniciar sesion')),
-                  /*           
-                        bool valid = (await userService.login(
+
+                  /*  bool valid = (await userService.login(
                             username, password)) as bool;
 
                         if (valid) {
@@ -144,8 +146,7 @@ class LoginScreenState extends State<LoginScreen> {
                           mostrarErrorConSnackbar(context,
                               "La constraseña debe tener al menos 8 caracteres,incluir una letra mayuscula, un numero y un caracter especial, que no sea '@ , .'");
                           return;
-                        }
-  */
+                        }  */
 
                   SizedBox(height: size.height * 0.02),
                   BtnLogin(),

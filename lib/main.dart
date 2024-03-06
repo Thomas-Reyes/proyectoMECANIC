@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'screens/crear_Perfil.dart';
 import 'screens/screens.dart';
 
 void main() => runApp(MyApp());
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
           //
           'login': (_) => LoginScreen(),
           'CrearUsuario': (_) => CrearUsuario(),
+
+          //REALIZAR PANTALLA DE CREAR PERFIL
+          'CrearPerfil': (_) => CrearPerfil(),
+
           'RecuperarCuenta': (_) => RecuperarCuenta(),
           //
           'informacionAuto': (_) => informacionAuto(),

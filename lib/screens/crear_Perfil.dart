@@ -7,11 +7,11 @@ import '../models/crearUser_Erorr.dart';
 import '../services/crearUser.dart';
 import '../utils/isEmailValid.dart';
 
-class CrearUsuario extends StatefulWidget {
-  const CrearUsuario({Key? key}) : super(key: key);
+class CrearPerfil extends StatefulWidget {
+  const CrearPerfil({Key? key}) : super(key: key);
 
   @override
-  State<CrearUsuario> createState() => CrearUsuarioState();
+  State<CrearPerfil> createState() => CrearPerfilState();
 }
 
 Future<void> Data(UserData userData) async {
@@ -36,12 +36,15 @@ Future<void> Data(UserData userData) async {
   }
 }
 
-class CrearUsuarioState extends State<CrearUsuario> {
+class CrearPerfilState extends State<CrearPerfil> {
 //variables de almacenamiento
-  final TextEditingController _CreateusernameController =
-      TextEditingController();
-  final TextEditingController _CreatepasswordController =
-      TextEditingController();
+
+  final TextEditingController _nombreController = TextEditingController();
+  final TextEditingController _rutController = TextEditingController();
+  final TextEditingController _direccionController = TextEditingController();
+  final TextEditingController _comunaController = TextEditingController();
+  final TextEditingController _telefonoController = TextEditingController();
+  late DateTime _FechaController;
 
   final createuserService = CrearUserService();
 
@@ -70,19 +73,36 @@ class CrearUsuarioState extends State<CrearUsuario> {
               child: Column(
                 children: [
                   SizedBox(height: size.height * 0.02),
+
+                  //texto de crear perfil
                   TextCrearUsuario(),
+
                   SizedBox(height: size.height * 0.02),
 
                   TextField(
-                    controller: _CreateusernameController,
-                    decoration: InputDecoration(labelText: 'email'),
+                    controller: _nombreController,
+                    decoration: InputDecoration(labelText: 'Nombre'),
                   ),
                   TextField(
-                    controller: _CreatepasswordController,
-                    decoration: InputDecoration(labelText: 'password'),
+                    controller: _rutController,
+                    decoration: InputDecoration(labelText: 'Rut'),
                   ),
+                  /*    TextField(
+              controller: _FechaController,
+              decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
+            ),
+            TextField(
+              controller: _CreateusernameController,
+              decoration: InputDecoration(labelText: 'email'),
+            ),
+            TextField(
+              controller: _CreatepasswordController,
+              decoration: InputDecoration(labelText: 'password'),
+            ),
+ */
+
                   SizedBox(height: size.height * 0.02),
-                  ElevatedButton(
+                  /*  ElevatedButton(
                       onPressed: () async {
                         String create_username = _CreateusernameController.text;
                         String create_password = _CreatepasswordController.text;
@@ -115,7 +135,7 @@ class CrearUsuarioState extends State<CrearUsuario> {
                         // ignore: use_build_context_synchronously
                         mostrarErrorConAlertDialog(context, 'Error inesperado');
                       },
-                      child: Text('Crear usuario')),
+                      child: Text('Crear usuario')), */
 
                   SizedBox(height: 20),
 
