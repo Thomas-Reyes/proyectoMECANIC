@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           'inicio': (_) => onboarding_Screens(),
           //
           'login': (_) => LoginScreen(),
-          'CrearUsuario': (_) => CrearUsuario(),
+          'CrearUsuario': (_) => CrearUser(),
 
           //REALIZAR PANTALLA DE CREAR PERFIL
           'CrearPerfil': (_) => CrearPerfil(),

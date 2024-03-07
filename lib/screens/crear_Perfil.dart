@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:vidaomuerte/services/PerfilCreate.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/crearUser.dart';
-import '../models/crearUser_Erorr.dart';
-import '../services/crearUser.dart';
 import '../utils/isEmailValid.dart';
+
+//agregar rut-telefono-comuna-direccion-fecha de nacimiento
 
 class CrearPerfil extends StatefulWidget {
   const CrearPerfil({Key? key}) : super(key: key);
@@ -14,39 +14,36 @@ class CrearPerfil extends StatefulWidget {
   State<CrearPerfil> createState() => CrearPerfilState();
 }
 
-Future<void> Data(UserData userData) async {
-  try {
-    var url = Uri.parse('https://tu_api_strapi.com/endpoint');
-    var response = await http.post(
-      url,
-      body: jsonEncode(userData.toJson()),
-      headers: {'Content-Type': 'application/json'},
-    );
+Future<bool> createuser(String username, String password, String email) async {
+  var headers = {'Content-Type': 'application/json'};
+  var request = http.Request(
+      'POST',
+      Uri.parse(
+          'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/auth/local'));
+  request.body = json.encode({
+    //agregar campos de perfil
+    "identifier": username,
+    "password": password,
+    "username": username,
+  });
+  request.headers.addAll(headers);
 
-    if (response.statusCode == 200) {
-      // Datos enviados exitosamente
-      print('Datos enviados exitosamente');
-    } else {
-      // Error al enviar datos
-      print('Error al enviar datos: ${response.statusCode}');
-    }
-  } catch (e) {
-    // Manejo de errores
-    print('Error: $e');
-  }
+  http.StreamedResponse response =
+      await request.send(); //conn el await, le decimos que espere la respuesta
+
+  return (response.statusCode == 200);
 }
 
 class CrearPerfilState extends State<CrearPerfil> {
 //variables de almacenamiento
 
-  final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _rutController = TextEditingController();
   final TextEditingController _direccionController = TextEditingController();
   final TextEditingController _comunaController = TextEditingController();
   final TextEditingController _telefonoController = TextEditingController();
-  late DateTime _FechaController;
+  late DateTime _FechaController; //hacer el controller de fecha
 
-  final createuserService = CrearUserService();
+  final createuserService = PerfilService();
 
   @override
   Widget build(BuildContext context) {
@@ -80,51 +77,57 @@ class CrearPerfilState extends State<CrearPerfil> {
                   SizedBox(height: size.height * 0.02),
 
                   TextField(
-                    controller: _nombreController,
-                    decoration: InputDecoration(labelText: 'Nombre'),
-                  ),
-                  TextField(
                     controller: _rutController,
                     decoration: InputDecoration(labelText: 'Rut'),
                   ),
-                  /*    TextField(
-              controller: _FechaController,
-              decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
-            ),
-            TextField(
-              controller: _CreateusernameController,
-              decoration: InputDecoration(labelText: 'email'),
-            ),
-            TextField(
-              controller: _CreatepasswordController,
-              decoration: InputDecoration(labelText: 'password'),
-            ),
- */
+                  TextField(
+                    controller: _direccionController,
+                    decoration: InputDecoration(labelText: 'direccion'),
+                  ),
+                  TextField(
+                    controller: _comunaController,
+                    decoration: InputDecoration(labelText: 'comuna'),
+                  ),
+                  TextField(
+                    controller: _telefonoController,
+                    decoration: InputDecoration(labelText: 'Contacto'),
+                  ),
+
+                  /* consultar como hacer el controler de fecha
+                  TextField(
+                    controller: _nombreController,
+                    decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
+                  ), */
 
                   SizedBox(height: size.height * 0.02),
-                  /*  ElevatedButton(
+                  ElevatedButton(
                       onPressed: () async {
                         String create_username = _CreateusernameController.text;
                         String create_password = _CreatepasswordController.text;
+                        String create_username = _CreateusernameController.text;
+                        String create_password = _CreatepasswordController.text;
+                        String create_password = _CreatepasswordController.text;
 
+                        /* agregar validaciones 
                         if (!isEmailValid(create_username)) {
                           mostrarErrorConSnackBar(context, 'Email incorrecto');
                           return;
                         }
-
-                        Object response = await createuserService.createUsuario(
+ */
+                        /*  agregar campos faltantes
+                       Object response = await createuserService.createPerfil(
                             create_username, create_password);
-
+ */
                         //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
 
-                        if (response is UserData) {
+                        if (response is PerfilCreate) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => LoginScreen()));
                           return;
                         }
-                        if (response is crearUser_Erorr) {
+                        if (response is PerfilCreate_Erorr) {
                           //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
 
                           //alerta de error con AlertDialog
@@ -135,7 +138,7 @@ class CrearPerfilState extends State<CrearPerfil> {
                         // ignore: use_build_context_synchronously
                         mostrarErrorConAlertDialog(context, 'Error inesperado');
                       },
-                      child: Text('Crear usuario')), */
+                      child: Text('Crear usuario')),
 
                   SizedBox(height: 20),
 

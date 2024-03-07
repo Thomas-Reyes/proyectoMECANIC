@@ -1,49 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:vidaomuerte/models/UserCreate.dart';
+import 'package:vidaomuerte/models/UserCreate_Erorr.dart';
+import 'package:vidaomuerte/screens/crear_Perfil.dart';
+import 'package:vidaomuerte/services/UserCreate.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/crearUser.dart';
-import '../models/crearUser_Erorr.dart';
-import '../services/crearUser.dart';
+import '../services/UserCreate.dart';
 import '../utils/isEmailValid.dart';
 
-class CrearUsuario extends StatefulWidget {
-  const CrearUsuario({Key? key}) : super(key: key);
+class CrearUser extends StatefulWidget {
+  const CrearUser({Key? key}) : super(key: key);
 
   @override
-  State<CrearUsuario> createState() => CrearUsuarioState();
+  CreateUserState createState() => CreateUserState();
 }
 
-Future<void> Data(UserData userData) async {
-  try {
-    var url = Uri.parse('https://tu_api_strapi.com/endpoint');
-    var response = await http.post(
-      url,
-      body: jsonEncode(userData.toJson()),
-      headers: {'Content-Type': 'application/json'},
-    );
+Future<bool> createuser(String username, String password, String email) async {
+  var headers = {'Content-Type': 'application/json'};
+  var request = http.Request(
+      'POST',
+      Uri.parse(
+          'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/auth/local'));
+  request.body = json.encode({
+    "identifier": username,
+    "password": password,
+    "username": username,
+  });
+  request.headers.addAll(headers);
 
-    if (response.statusCode == 200) {
-      // Datos enviados exitosamente
-      print('Datos enviados exitosamente');
-    } else {
-      // Error al enviar datos
-      print('Error al enviar datos: ${response.statusCode}');
-    }
-  } catch (e) {
-    // Manejo de errores
-    print('Error: $e');
-  }
+  http.StreamedResponse response =
+      await request.send(); //conn el await, le decimos que espere la respuesta
+
+  return (response.statusCode == 200);
 }
 
-class CrearUsuarioState extends State<CrearUsuario> {
+class CreateUserState extends State<CrearUser> {
 //variables de almacenamiento
-  final TextEditingController _CreateusernameController =
-      TextEditingController();
-  final TextEditingController _CreatepasswordController =
-      TextEditingController();
 
-  final createuserService = CrearUserService();
+  final TextEditingController _username_controller = TextEditingController();
+  final TextEditingController _email_controller = TextEditingController();
+  final TextEditingController _password_controller = TextEditingController();
+
+  final createuserService = UserService();
 
   @override
   Widget build(BuildContext context) {
@@ -70,41 +69,49 @@ class CrearUsuarioState extends State<CrearUsuario> {
               child: Column(
                 children: [
                   SizedBox(height: size.height * 0.02),
+
+                  //texto de crear perfil
                   TextCrearUsuario(),
+
                   SizedBox(height: size.height * 0.02),
 
                   TextField(
-                    controller: _CreateusernameController,
+                    controller: _username_controller,
+                    decoration: InputDecoration(labelText: 'Nombre'),
+                  ),
+                  TextField(
+                    controller: _email_controller,
                     decoration: InputDecoration(labelText: 'email'),
                   ),
                   TextField(
-                    controller: _CreatepasswordController,
+                    controller: _password_controller,
                     decoration: InputDecoration(labelText: 'password'),
                   ),
                   SizedBox(height: size.height * 0.02),
                   ElevatedButton(
                       onPressed: () async {
-                        String create_username = _CreateusernameController.text;
-                        String create_password = _CreatepasswordController.text;
+                        String create_username = _username_controller.text;
+                        String create_email = _email_controller.text;
+                        String create_password = _password_controller.text;
 
                         if (!isEmailValid(create_username)) {
                           mostrarErrorConSnackBar(context, 'Email incorrecto');
                           return;
                         }
 
-                        Object response = await createuserService.createUsuario(
-                            create_username, create_password);
+                        Object response = await createuserService.createUser(
+                            create_username, create_password, create_email);
 
                         //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
 
-                        if (response is UserData) {
+                        if (response is UserCreate) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginScreen()));
+                                  builder: (context) => CrearPerfil()));
                           return;
                         }
-                        if (response is crearUser_Erorr) {
+                        if (response is UserCreate_Erorr) {
                           //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
 
                           //alerta de error con AlertDialog
@@ -115,7 +122,7 @@ class CrearUsuarioState extends State<CrearUsuario> {
                         // ignore: use_build_context_synchronously
                         mostrarErrorConAlertDialog(context, 'Error inesperado');
                       },
-                      child: Text('Crear usuario')),
+                      child: Text(' Siguiente ')),
 
                   SizedBox(height: 20),
 

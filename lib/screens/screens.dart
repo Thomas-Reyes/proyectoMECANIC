@@ -1,5 +1,5 @@
+export 'package:vidaomuerte/screens/CrearUser.dart';
 export 'package:vidaomuerte/screens/recuperacion.dart';
-export 'package:vidaomuerte/screens/crear_usuario.dart';
 export 'package:vidaomuerte/screens/home_screen.dart';
 export 'package:vidaomuerte/screens/login.dart';
 export 'package:vidaomuerte/screens/favorite_Screen.dart';

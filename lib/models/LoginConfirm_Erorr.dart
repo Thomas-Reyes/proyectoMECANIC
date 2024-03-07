@@ -1,18 +1,18 @@
 //mapeo de usuario de respuesta == 400
 import 'package:flutter/foundation.dart';
 
-class UserErorr {
+class LoginConfirm_Erorr {
   final String status;
   final String message;
 
-  UserErorr({
+  LoginConfirm_Erorr({
     required this.status,
     required this.message,
   });
 
 //constructor que permite crear un usuario a partir de un mapa de datos JSON
-  factory UserErorr.fromJson(Map<String, dynamic> json) {
-    return UserErorr(
+  factory LoginConfirm_Erorr.fromJson(Map<String, dynamic> json) {
+    return LoginConfirm_Erorr(
       status: json['error']['status'].toString(),
       message: json['error']['message'],
     );

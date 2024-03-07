@@ -3,12 +3,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:vidaomuerte/models/user.dart';
+import 'package:vidaomuerte/models/LoginConfirm.dart';
+import 'package:vidaomuerte/models/LoginConfirm_Erorr.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/userErorr.dart';
-import '../services/user.dart';
+import '../services/LoginService.dart';
 import '../utils/isEmailValid.dart';
 import '../utils/isPasswordValid.dart';
 
@@ -19,7 +19,7 @@ class LoginScreen extends StatefulWidget {
   LoginScreenState createState() => LoginScreenState();
 }
 
-Future<bool> login(String username, String password) async {
+Future<bool> Login(String username, String password) async {
   var headers = {'Content-Type': 'application/json'};
   var request = http.Request(
       'POST',
@@ -104,18 +104,18 @@ class LoginScreenState extends State<LoginScreen> {
                         }
 
                         Object response =
-                            await userService.login(username, password);
+                            await userService.Login(username, password);
 
                         //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
 
-                        if (response is User) {
+                        if (response is LoginConfirm) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => HomeScreens()));
                           return;
                         }
-                        if (response is UserErorr) {
+                        if (response is LoginConfirm_Erorr) {
                           //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
 
                           //alerta de error con AlertDialog
