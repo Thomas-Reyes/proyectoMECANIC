@@ -12,23 +12,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: 'login',
+        initialRoute: 'CrearUsuario',
         routes: {
           //
           'inicio': (_) => onboarding_Screens(),
           //
           'login': (_) => LoginScreen(),
           'CrearUsuario': (_) => CrearUser(),
-
-          //REALIZAR PANTALLA DE CREAR PERFIL
+          //
           'CrearPerfil': (_) => CrearPerfil(),
-
+          //
           'RecuperarCuenta': (_) => RecuperarCuenta(),
           //
           'informacionAuto': (_) => informacionAuto(),
           'ingresarAuto': (_) => DropdownButtonWidget(),
-          //
-          /* 'vitrina': (_) => vitrinaHome(), */
           //
           'home': (_) => HomeScreens(),
           'ubicacion': (_) => ubicacionScreen(),

@@ -35,9 +35,8 @@ Future<bool> Login(String username, String password) async {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final _usernameController =
-      TextEditingController(text: 'thomas.alonsoreyes@gmail.com');
-  final _passwordController = TextEditingController(text: 'Thoma97!');
+  final _usernameController = TextEditingController(text: 'anna@gmail.com');
+  final _passwordController = TextEditingController(text: 'Anna997!');
 
 //userService debe llamar al servicio que en esta oportunidad es la clase LoginService, que es de la carpeta services,del archivo user.dart
   final userService = LoginService();
@@ -72,7 +71,7 @@ class LoginScreenState extends State<LoginScreen> {
 
                   TextField(
                     controller: _usernameController,
-                    decoration: InputDecoration(labelText: 'Usuario'),
+                    decoration: InputDecoration(labelText: 'Emaill'),
                   ),
                   TextField(
                     controller: _passwordController,
@@ -97,11 +96,11 @@ class LoginScreenState extends State<LoginScreen> {
                           return;
                         }
                         //consultar por que si esta bn la password no me deja entrar
-                        if (!isPasswordValid(password)) {
+                        /*   if (!isPasswordValid(password)) {
                           mostrarErrorConSnackBar(context,
                               'La constraseña debe tener al menos 8 caracteres, incluir 1 Mayuscula, 1 numero y un caracter especial, que no se " @ o . " ');
                           return;
-                        }
+                        } */
 
                         Object response =
                             await userService.Login(username, password);

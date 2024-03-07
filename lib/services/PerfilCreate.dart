@@ -5,8 +5,8 @@ import '../models/PerfilCreate_Erorr.dart';
 
 //agregar rut-telefono-comuna-direccion-fecha de nacimiento
 class PerfilService {
-  Future<Object> createPerfil(
-      String email, String password, String username) async {
+  Future<Object> createPerfil(String nombreApellido, String comuna,
+      String contacto, String rut, String fecha, String direccion) async {
     //se define el header
     Map<String, String> headers = {'Content-Type': 'application/json'};
 
@@ -16,11 +16,12 @@ class PerfilService {
 
     //se define cuerpo del body
     final String body = json.encode({
-      "username": username,
-      "email": email,
-      "password": password,
-      "confirmed": true,
-      "role": 1, //admin
+      "nombreApellido": nombreApellido,
+      "rut": rut,
+      "fecha": fecha,
+      "direccion": direccion,
+      "comuna": comuna,
+      "contacto": contacto,
     });
 
     try {

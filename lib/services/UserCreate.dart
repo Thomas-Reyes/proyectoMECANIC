@@ -10,7 +10,9 @@ import '../models/PerfilCreate_Erorr.dart';
 
 class UserService {
   Future<Object> createUser(
-      String email, String password, String username) async {
+    String email,
+    String password,
+  ) async {
     //se define el header
     Map<String, String> headers = {'Content-Type': 'application/json'};
 
@@ -19,13 +21,8 @@ class UserService {
         'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/users');
 
     //se define cuerpo del body
-    final String body = json.encode({
-      "username": username,
-      "email": email,
-      "password": password,
-      "confirmed": true,
-      "role": 1, //admin
-    });
+    final String body = json.encode(
+        {"username": email, "email": email, "password": password, "role": 1});
 
     try {
       final response = await http.post(url, headers: headers, body: body);
@@ -33,16 +30,18 @@ class UserService {
 
       final data = json.decode(response.body);
       /*  print(data); para ver su respuesta en consola */
-
+      print(data);
+      print(response.statusCode);
       //logica de retorno
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
+        print('pase');
         return UserCreate.fromJson(
             data); // 'User' sale de la clase User del modelo Usuario valido
       } else {
-        return UserCreate_Erorr.fromJson(data);
+        return UserCreate_Erorr(status: '501', message: 'Error de red');
       } // 'UserErorr' sale de la clase User del modelo UserErorr invalido
     } catch (e) {
-      return UserCreate_Erorr(status: '500', message: 'Error de red');
+      return UserCreate_Erorr(status: '502', message: 'Error de red');
     }
   }
 }

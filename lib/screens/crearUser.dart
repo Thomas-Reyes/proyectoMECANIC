@@ -3,6 +3,7 @@ import 'package:vidaomuerte/models/UserCreate.dart';
 import 'package:vidaomuerte/models/UserCreate_Erorr.dart';
 import 'package:vidaomuerte/screens/crear_Perfil.dart';
 import 'package:vidaomuerte/services/UserCreate.dart';
+import 'package:vidaomuerte/utils/isPasswordValid.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -16,16 +17,18 @@ class CrearUser extends StatefulWidget {
   CreateUserState createState() => CreateUserState();
 }
 
-Future<bool> createuser(String username, String password, String email) async {
+Future<bool> createuser(
+  String email,
+  String password,
+) async {
   var headers = {'Content-Type': 'application/json'};
   var request = http.Request(
       'POST',
       Uri.parse(
           'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/auth/local'));
   request.body = json.encode({
-    "identifier": username,
+    "username": email,
     "password": password,
-    "username": username,
   });
   request.headers.addAll(headers);
 
@@ -38,9 +41,10 @@ Future<bool> createuser(String username, String password, String email) async {
 class CreateUserState extends State<CrearUser> {
 //variables de almacenamiento
 
-  final TextEditingController _username_controller = TextEditingController();
-  final TextEditingController _email_controller = TextEditingController();
-  final TextEditingController _password_controller = TextEditingController();
+  final TextEditingController _email_controller =
+      TextEditingController(text: 'anna@gmail.com');
+  final TextEditingController _password_controller =
+      TextEditingController(text: 'Anna998!');
 
   final createuserService = UserService();
 
@@ -76,10 +80,6 @@ class CreateUserState extends State<CrearUser> {
                   SizedBox(height: size.height * 0.02),
 
                   TextField(
-                    controller: _username_controller,
-                    decoration: InputDecoration(labelText: 'Nombre'),
-                  ),
-                  TextField(
                     controller: _email_controller,
                     decoration: InputDecoration(labelText: 'email'),
                   ),
@@ -90,18 +90,23 @@ class CreateUserState extends State<CrearUser> {
                   SizedBox(height: size.height * 0.02),
                   ElevatedButton(
                       onPressed: () async {
-                        String create_username = _username_controller.text;
                         String create_email = _email_controller.text;
                         String create_password = _password_controller.text;
 
-                        if (!isEmailValid(create_username)) {
+                        if (!isEmailValid(create_email)) {
                           mostrarErrorConSnackBar(context, 'Email incorrecto');
                           return;
                         }
 
-                        Object response = await createuserService.createUser(
-                            create_username, create_password, create_email);
+                        if (!isPasswordValid(create_password)) {
+                          mostrarErrorConSnackBar(context,
+                              'La constraseña debe tener al menos 8 caracteres, incluir 1 Mayuscula, 1 numero y un caracter especial, que no se " @ o . " ');
+                          return;
+                        }
 
+                        Object response = await createuserService.createUser(
+                            create_email, create_password);
+                        print(response);
                         //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
 
                         if (response is UserCreate) {
@@ -113,7 +118,7 @@ class CreateUserState extends State<CrearUser> {
                         }
                         if (response is UserCreate_Erorr) {
                           //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
-
+                          print(response.status);
                           //alerta de error con AlertDialog
                           mostrarErrorConAlertDialog(
                               context, "Error de inicio de sesión");

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vidaomuerte/models/PerfilCreate.dart';
+import 'package:vidaomuerte/models/PerfilCreate_Erorr.dart';
 import 'package:vidaomuerte/services/PerfilCreate.dart';
+import 'package:vidaomuerte/utils/isValidRut.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -14,7 +17,8 @@ class CrearPerfil extends StatefulWidget {
   State<CrearPerfil> createState() => CrearPerfilState();
 }
 
-Future<bool> createuser(String username, String password, String email) async {
+Future<bool> createuser(String nombreApellido, String comuna, String contacto,
+    String rut, String fecha, String direccion) async {
   var headers = {'Content-Type': 'application/json'};
   var request = http.Request(
       'POST',
@@ -22,9 +26,13 @@ Future<bool> createuser(String username, String password, String email) async {
           'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/auth/local'));
   request.body = json.encode({
     //agregar campos de perfil
-    "identifier": username,
-    "password": password,
-    "username": username,
+
+    "nombreApellido": nombreApellido,
+    "rut": rut,
+    "fecha": fecha,
+    "direccion": direccion,
+    "comuna": comuna,
+    "contacto": contacto,
   });
   request.headers.addAll(headers);
 
@@ -37,10 +45,12 @@ Future<bool> createuser(String username, String password, String email) async {
 class CrearPerfilState extends State<CrearPerfil> {
 //variables de almacenamiento
 
+  final TextEditingController _nombreApellidoController =
+      TextEditingController();
   final TextEditingController _rutController = TextEditingController();
   final TextEditingController _direccionController = TextEditingController();
   final TextEditingController _comunaController = TextEditingController();
-  final TextEditingController _telefonoController = TextEditingController();
+  final TextEditingController _contactoController = TextEditingController();
   late DateTime _FechaController; //hacer el controller de fecha
 
   final createuserService = PerfilService();
@@ -77,9 +87,20 @@ class CrearPerfilState extends State<CrearPerfil> {
                   SizedBox(height: size.height * 0.02),
 
                   TextField(
+                    controller: _nombreApellidoController,
+                    decoration: InputDecoration(labelText: 'nombre apellido'),
+                  ),
+                  TextField(
                     controller: _rutController,
                     decoration: InputDecoration(labelText: 'Rut'),
                   ),
+
+                  /* consultar como hacer el controler de fecha
+                  TextField(
+                    controller: _nombreController,
+                    decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
+                  ), */
+
                   TextField(
                     controller: _direccionController,
                     decoration: InputDecoration(labelText: 'direccion'),
@@ -89,35 +110,33 @@ class CrearPerfilState extends State<CrearPerfil> {
                     decoration: InputDecoration(labelText: 'comuna'),
                   ),
                   TextField(
-                    controller: _telefonoController,
+                    controller: _contactoController,
                     decoration: InputDecoration(labelText: 'Contacto'),
                   ),
-
-                  /* consultar como hacer el controler de fecha
-                  TextField(
-                    controller: _nombreController,
-                    decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
-                  ), */
 
                   SizedBox(height: size.height * 0.02),
                   ElevatedButton(
                       onPressed: () async {
-                        String create_username = _CreateusernameController.text;
-                        String create_password = _CreatepasswordController.text;
-                        String create_username = _CreateusernameController.text;
-                        String create_password = _CreatepasswordController.text;
-                        String create_password = _CreatepasswordController.text;
+                        String create_nombre = _nombreApellidoController.text;
+                        String create_rut = _rutController.text;
+                        String create_fecha = _rutController.text;
+                        String create_direccion = _direccionController.text;
+                        String create_comuna = _comunaController.text;
+                        String create_telefono = _contactoController.text;
 
-                        /* agregar validaciones 
-                        if (!isEmailValid(create_username)) {
-                          mostrarErrorConSnackBar(context, 'Email incorrecto');
+                        if (!isValidRut(create_rut)) {
+                          mostrarErrorConSnackBar(context, 'rut incorrecto');
                           return;
                         }
- */
-                        /*  agregar campos faltantes
-                       Object response = await createuserService.createPerfil(
-                            create_username, create_password);
- */
+
+                        Object response = await createuserService.createPerfil(
+                            create_nombre,
+                            create_rut,
+                            create_fecha,
+                            create_direccion,
+                            create_comuna,
+                            create_telefono);
+
                         //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
 
                         if (response is PerfilCreate) {
@@ -138,7 +157,7 @@ class CrearPerfilState extends State<CrearPerfil> {
                         // ignore: use_build_context_synchronously
                         mostrarErrorConAlertDialog(context, 'Error inesperado');
                       },
-                      child: Text('Crear usuario')),
+                      child: Text('Crear Perfil')),
 
                   SizedBox(height: 20),
 

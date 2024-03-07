@@ -1,6 +1,7 @@
 //mapeo de usuario de respuesta == 400
 import 'package:flutter/foundation.dart';
 
+//crar un error
 class PerfilCreate_Erorr {
   final String status;
   final String message;
@@ -11,10 +12,10 @@ class PerfilCreate_Erorr {
   });
 
 //constructor que permite crear un usuario a partir de un mapa de datos JSON
-  factory PerfilCreate_Erorr.fromJson(Map<String, dynamic> json) {
+  factory PerfilCreate_Erorr.fromJson(Map<String, dynamic> data) {
     return PerfilCreate_Erorr(
-      status: json['error']['status'].toString(),
-      message: json['error']['message'],
+      status: data['data']['error']['status'].toString(),
+      message: data['data']['error']['message'],
     );
   }
 }
