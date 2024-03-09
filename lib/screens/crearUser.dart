@@ -7,7 +7,6 @@ import 'package:vidaomuerte/utils/isPasswordValid.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../services/UserCreate.dart';
 import '../utils/isEmailValid.dart';
 
 class CrearUser extends StatefulWidget {
@@ -15,27 +14,6 @@ class CrearUser extends StatefulWidget {
 
   @override
   CreateUserState createState() => CreateUserState();
-}
-
-Future<bool> createuser(
-  String email,
-  String password,
-) async {
-  var headers = {'Content-Type': 'application/json'};
-  var request = http.Request(
-      'POST',
-      Uri.parse(
-          'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/auth/local'));
-  request.body = json.encode({
-    "username": email,
-    "password": password,
-  });
-  request.headers.addAll(headers);
-
-  http.StreamedResponse response =
-      await request.send(); //conn el await, le decimos que espere la respuesta
-
-  return (response.statusCode == 200);
 }
 
 class CreateUserState extends State<CrearUser> {
@@ -106,6 +84,7 @@ class CreateUserState extends State<CrearUser> {
 
                         Object response = await createuserService.createUser(
                             create_email, create_password);
+
                         print(response);
                         //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
 
@@ -113,7 +92,8 @@ class CreateUserState extends State<CrearUser> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CrearPerfil()));
+                                  builder: (context) =>
+                                      CrearPerfil(user: response.id)));
                           return;
                         }
                         if (response is UserCreate_Erorr) {

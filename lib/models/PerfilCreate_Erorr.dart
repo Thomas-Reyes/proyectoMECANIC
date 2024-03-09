@@ -1,5 +1,4 @@
 //mapeo de usuario de respuesta == 400
-import 'package:flutter/foundation.dart';
 
 //crar un error
 class PerfilCreate_Erorr {

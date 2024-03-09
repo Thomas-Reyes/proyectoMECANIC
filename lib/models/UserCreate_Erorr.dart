@@ -1,5 +1,4 @@
 //mapeo de usuario de respuesta == 400
-import 'package:flutter/foundation.dart';
 
 class UserCreate_Erorr {
   final String status;

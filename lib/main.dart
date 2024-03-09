@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vidaomuerte/models/UserCreate.dart';
 
 import 'screens/crear_Perfil.dart';
 import 'screens/screens.dart';
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: 'CrearUsuario',
+        initialRoute: 'inicio',
         routes: {
           //
           'inicio': (_) => onboarding_Screens(),
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
           'login': (_) => LoginScreen(),
           'CrearUsuario': (_) => CrearUser(),
           //
-          'CrearPerfil': (_) => CrearPerfil(),
+          'CrearPerfil': (_) => CrearPerfil(
+              /*  user: 6, */
+              ),
           //
           'RecuperarCuenta': (_) => RecuperarCuenta(),
           //

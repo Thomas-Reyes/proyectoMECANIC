@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:vidaomuerte/models/LoginConfirm.dart';
 import 'package:vidaomuerte/models/LoginConfirm_Erorr.dart';
+import 'package:vidaomuerte/models/PerfilCreate.dart';
+import 'package:vidaomuerte/screens/crear_Perfil.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,25 +15,11 @@ import '../utils/isEmailValid.dart';
 import '../utils/isPasswordValid.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final PerfilCreate? perfil;
+  const LoginScreen({super.key, this.perfil});
 
   @override
   LoginScreenState createState() => LoginScreenState();
-}
-
-Future<bool> Login(String username, String password) async {
-  var headers = {'Content-Type': 'application/json'};
-  var request = http.Request(
-      'POST',
-      Uri.parse(
-          'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/auth/local'));
-  request.body = json.encode({"identifier": username, "password": password});
-  request.headers.addAll(headers);
-
-  http.StreamedResponse response =
-      await request.send(); //conn el await, le decimos que espere la respuesta
-
-  return (response.statusCode == 200);
 }
 
 class LoginScreenState extends State<LoginScreen> {

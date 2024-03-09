@@ -19,7 +19,6 @@ class UserCreate {
 
 //constructor que permite crear un usuario a partir de un mapa de datos JSON
   factory UserCreate.fromJson(Map<String, dynamic> json) {
-    print(json['id']);
     return UserCreate(
         id: json['id'],
         username: json['username'],

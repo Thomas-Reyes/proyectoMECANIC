@@ -4,10 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:vidaomuerte/models/UserCreate.dart';
 import 'package:vidaomuerte/models/UserCreate_Erorr.dart';
 
-import '../models/PerfilCreate_Erorr.dart';
-
-//quede en el minuto 18 del ultimo video
-
 class UserService {
   Future<Object> createUser(
     String email,
