@@ -1,5 +1,4 @@
 //mapeo de usuario de respuesta == 200
-import 'package:flutter/foundation.dart';
 
 class LoginConfirm {
   final String? jwt;
@@ -54,10 +53,7 @@ class LoginConfirm {
     }
   }
 } */
- 
 
-
- 
 /* 
 {
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzA5NTE3NTQ3LCJleHAiOjE3MTIxMDk1NDd9.iXCD7NN_-anLFAR-9RpkKDpDAOVzr51huCjHFD4M27M",

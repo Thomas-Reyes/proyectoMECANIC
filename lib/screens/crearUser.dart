@@ -86,7 +86,6 @@ class CreateUserState extends State<CrearUser> {
                             create_email, create_password);
 
                         print(response);
-                        //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
 
                         if (response is UserCreate) {
                           Navigator.push(

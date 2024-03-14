@@ -10,44 +10,42 @@ class informacionAuto extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: Padding(
-          padding: EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.only(top: 5),
           child: ListView(children: [
-            Container(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, left: 10),
-                    child: Text(
-                      'Caracteristicas',
-                      style: TextStyle(
-                        color: Color(0xFF001FBC),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
+            const Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 10, left: 10),
+                  child: Text(
+                    'Caracteristicas',
+                    style: TextStyle(
+                      color: Color(0xFF001FBC),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Container(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      'Maxus T60',
-                      style: TextStyle(
-                        color: Color(0xFF001FBC),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
+
+            const Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Maxus T60',
+                    style: TextStyle(
+                      color: Color(0xFF001FBC),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+
             //imagenes del carrusel
-            ImageCarouselWithGrid(
+            const ImageCarouselWithGrid(
               images: [
                 'assets/descripcion3.png',
                 'assets/descripcion4.png',
@@ -58,7 +56,7 @@ class informacionAuto extends StatelessWidget {
             ),
 
             //text informacion
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 10, left: 10),
               child: Text(
                 'Informacion del auto',
@@ -69,9 +67,9 @@ class informacionAuto extends StatelessWidget {
               ),
             ),
             //iconos
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
-              child: Row(
+              child: const Row(
                 children: [
                   SizedBox(width: 20),
                   Icon(Icons.ac_unit_rounded, size: 25),
@@ -92,7 +90,7 @@ class informacionAuto extends StatelessWidget {
             //texto informativo
             Container(
               margin: EdgeInsets.all(5),
-              child: Column(
+              child: const Column(
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -110,7 +108,7 @@ class informacionAuto extends StatelessWidget {
             SizedBox(height: 10),
 
             //posible card de caracteristicas
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 10, left: 10),
               child: Text(
                 'Caracteristicas',
@@ -134,12 +132,12 @@ class informacionAuto extends StatelessWidget {
                   0: FlexColumnWidth(),
                   1: FlexColumnWidth(),
                 },
-                children: [
+                children: const [
                   //Caracteristicas Generales
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: EdgeInsets.all(10),
                         child: Text(
                           'Generales:',
                           style: TextStyle(
@@ -149,7 +147,7 @@ class informacionAuto extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text(' '),
                       ),
                     ],
@@ -158,11 +156,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Dato 3'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Dato 4'),
                       ),
                     ],
@@ -171,11 +169,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Versión:'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('D20 GLX 4X4 AT'),
                       ),
                     ],
@@ -184,11 +182,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Año'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('2023'),
                       ),
                     ],
@@ -197,11 +195,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Combustible'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Diesel'),
                       ),
                     ],
@@ -210,11 +208,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Kilometraje'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('245'),
                       ),
                     ],
@@ -223,11 +221,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Transmisión: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Automatica'),
                       ),
                     ],
@@ -236,11 +234,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Carrocería: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Pickup'),
                       ),
                     ],
@@ -249,11 +247,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Color: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Azul metalizado'),
                       ),
                     ],
@@ -262,11 +260,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Llaves de  repuesto:'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Si'),
                       ),
                     ],
@@ -274,11 +272,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text(' '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text(' '),
                       ),
                     ],
@@ -288,7 +286,7 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: EdgeInsets.all(10),
                         child: Text(
                           'Confort',
                           style: TextStyle(
@@ -298,7 +296,7 @@ class informacionAuto extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text(' '),
                       ),
                     ],
@@ -307,11 +305,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Climatización: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Si'),
                       ),
                     ],
@@ -320,11 +318,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Suspensión: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Si'),
                       ),
                     ],
@@ -333,11 +331,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Radio: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Si'),
                       ),
                     ],
@@ -346,11 +344,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Pantalla táctil: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('si'),
                       ),
                     ],
@@ -359,11 +357,11 @@ class informacionAuto extends StatelessWidget {
                   TableRow(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Conexión Bluetooth: '),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('si'),
                       ),
                     ],
@@ -375,8 +373,8 @@ class informacionAuto extends StatelessWidget {
             //informacion del vendedor
 
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Text(
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: const Text(
                 'Informacion del Vendedor',
                 style: TextStyle(
                   color: Color(0xFF001FBC),
@@ -396,7 +394,7 @@ class informacionAuto extends StatelessWidget {
                       0: FlexColumnWidth(),
                       1: FlexColumnWidth(),
                     },
-                    children: [
+                    children: const [
                       // datos  del vendedor
                       TableRow(
                         children: [
@@ -468,7 +466,7 @@ class informacionAuto extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
                             child: Text('2021'),
                           ),
                         ],
@@ -485,8 +483,8 @@ class informacionAuto extends StatelessWidget {
             SizedBox(height: 15),
             //texto final
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Padding(
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: const Padding(
                 padding: EdgeInsets.only(top: 10, left: 10),
                 child: Text(
                   ' *La forma de contactar al vendedor es directo por whatsapp. ',
@@ -500,6 +498,6 @@ class informacionAuto extends StatelessWidget {
             SizedBox(height: 30),
           ]),
         ),
-        bottomNavigationBar: NavBar(currentRoute: 'home'));
+        bottomNavigationBar: const NavBar(currentRoute: 'home'));
   }
 }

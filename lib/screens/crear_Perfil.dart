@@ -136,8 +136,10 @@ class CrearPerfilState extends State<CrearPerfil> {
                           mostrarErrorConSnackBar(context, 'Comuna Incorrecta');
                           return;
                         }
+
                         //Contacto
-                        if (!isContactoValid(create_contacto)) {
+
+                        if (!isContactoValid(create_contacto as String)) {
                           mostrarErrorConSnackBar(
                               context, 'Contacto Incorrecto');
                           return;

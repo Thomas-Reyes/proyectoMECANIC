@@ -83,13 +83,13 @@ class LoginScreenState extends State<LoginScreen> {
                           mostrarErrorConSnackBar(context, 'Email incorrecto');
                           return;
                         }
-                        //consultar por que si esta bn la password no me deja entrar
-                        /*   if (!isPasswordValid(password)) {
+                        /*   //consultar por que si esta bn la password no me deja entrar
+                        if (!isPasswordValid(password)) {
                           mostrarErrorConSnackBar(context,
                               'La constraseña debe tener al menos 8 caracteres, incluir 1 Mayuscula, 1 numero y un caracter especial, que no se " @ o . " ');
                           return;
-                        } */
-
+                        }
+ */
                         Object response =
                             await userService.Login(username, password);
 

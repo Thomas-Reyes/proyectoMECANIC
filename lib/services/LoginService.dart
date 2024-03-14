@@ -4,8 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:vidaomuerte/models/LoginConfirm.dart';
 import 'package:vidaomuerte/models/LoginConfirm_Erorr.dart';
 
-import '../models/PerfilCreate_Erorr.dart';
-
 class LoginService {
   Future<Object> Login(
     String email,
@@ -20,7 +18,7 @@ class LoginService {
 
     //se define cuerpo del body
     final String body = json.encode({
-      "email": email,
+      "identifier": email,
       "password": password,
     });
 

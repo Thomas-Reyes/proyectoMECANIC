@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:vidaomuerte/models/SubirAuto.dart';
+import 'package:vidaomuerte/models/SubirAuto_Erorr.dart';
+import 'package:vidaomuerte/services/SubirAutoService.dart';
+import 'package:vidaomuerte/utils/isColorValid.dart';
+import 'package:vidaomuerte/utils/isDescripcionValid.dart';
+import 'package:vidaomuerte/utils/isKilometrajeValid.dart';
+import 'package:vidaomuerte/utils/isPrecioValid.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 
 class StyledCheckbox extends StatefulWidget {
@@ -43,15 +50,33 @@ class _StyledCheckboxState extends State<StyledCheckbox> {
 }
 
 class DropdownButtonWidget extends StatefulWidget {
+  final int profile;
+  const DropdownButtonWidget({Key? key, this.profile = 0}) : super(key: key);
   @override
   _DropdownButtonWidgetState createState() => _DropdownButtonWidgetState();
 }
 
 class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
-  String? _selectedBrand;
-  String? _selectedVersion;
-  String? _selectedYear;
-  String? _selectedTransmission;
+  bool _carroceriaSelected = false;
+  bool _climatizacionSelected = false;
+  bool _suspensionSelected = false;
+  bool _radioSelected = false;
+  bool _pantallaTactilSelected = false;
+  bool _bluetoothSelected = false;
+  bool _publicarLetreroSelected = false;
+
+  late String _selectedBrand;
+  late String _selectedVersion;
+  late String _selectedYear;
+  late String _selectedTransmission;
+  late String _selectedConbustible;
+
+  final TextEditingController _descripcion = TextEditingController(
+      text: 'es un vehículo motorizado con ruedas utilizado');
+  final TextEditingController _precio = TextEditingController(text: '1200552');
+  final TextEditingController _kilometraje =
+      TextEditingController(text: '45874');
+  final TextEditingController _colorAuto = TextEditingController(text: 'Azul');
 
   List<String> _carBrands = [
     'Selecciona la marca del auto',
@@ -92,7 +117,14 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
     '2015',
     '2014',
   ];
-
+  final List<String> _carConbustible = [
+    'Selecciona el conbustible del auto',
+    'Diésel',
+    'Gasolina',
+    'Gas Licuado del Petróleo',
+    'Gas Natural Comprimido',
+    'Biocombustibles',
+  ];
   List<String> _carTransmissions = [
     'Selecciona la transmisión',
     'Automática',
@@ -100,14 +132,9 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
     'CVT',
     'Semi-automática',
   ];
-  bool _carroceriaSelected = false;
-  bool _climatizacionSelected = false;
-  bool _suspensionSelected = false;
-  bool _radioSelected = false;
-  bool _pantallaTactilSelected = false;
-  bool _bluetoothSelected = false;
-  //
-  bool _publicarLetreroSelected = false;
+
+  final createVehiculoService = SubirAutoService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -217,7 +244,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         hint: Text('Selecciona la marca del auto'),
                         onChanged: (String? newValue) {
                           setState(() {
-                            _selectedBrand = newValue;
+                            _selectedBrand = newValue!;
                           });
                         },
                         items: _carBrands
@@ -249,7 +276,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         hint: Text('Version de vehiculo'),
                         onChanged: (String? newValue) {
                           setState(() {
-                            _selectedVersion = newValue;
+                            _selectedVersion = newValue!;
                           });
                         },
                         items: _carVersions
@@ -282,7 +309,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         ),
                         onChanged: (String? newValue) {
                           setState(() {
-                            _selectedYear = newValue;
+                            _selectedYear = newValue!;
                           });
                         },
                         items: _carYears
@@ -295,7 +322,40 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                       ),
                     ),
                     SizedBox(height: 20),
+
                     //optionbuton 4
+                    Container(
+                      margin: const EdgeInsets.all(10),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(
+                          10), // Añade un espacio interior alrededor del contenedor
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color:
+                                Colors.orange), // Añade un borde al contenedor
+                        borderRadius: BorderRadius.circular(
+                            10), // Añade esquinas redondeadas al contenedor
+                      ),
+                      child: DropdownButton<String>(
+                        value: _selectedConbustible,
+                        hint: const Text('Selecciona el conbustible del auto'),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedConbustible = newValue!;
+                          });
+                        },
+                        items: _carConbustible
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+
+                    SizedBox(height: 20),
+                    //optionbuton 5
                     Container(
                       margin: EdgeInsets.all(10),
                       width: double.infinity,
@@ -313,7 +373,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         hint: Text('Selecciona la transmisión'),
                         onChanged: (String? newValue) {
                           setState(() {
-                            _selectedTransmission = newValue;
+                            _selectedTransmission = newValue!;
                           });
                         },
                         items: _carTransmissions
@@ -331,9 +391,9 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
 
                 //input 1
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   width: double.infinity,
-                  padding: EdgeInsets.all(
+                  padding: const EdgeInsets.all(
                       10), // Añade un espacio interior alrededor del contenedor
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -342,19 +402,18 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         10), // Añade esquinas redondeadas al contenedor
                   ),
                   child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Escribe el color del auto',
-                      border: InputBorder.none,
-                    ),
+                    controller: _colorAuto,
+                    decoration:
+                        InputDecoration(labelText: 'ingrese color del auto'),
                   ),
                 ),
                 SizedBox(height: 10),
 
                 //input 2
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   width: double.infinity,
-                  padding: EdgeInsets.all(
+                  padding: const EdgeInsets.all(
                       10), // Añade un espacio interior alrededor del contenedor
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -363,10 +422,9 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         10), // Añade esquinas redondeadas al contenedor
                   ),
                   child: TextField(
-                    decoration: InputDecoration(
-                      hintText: '  Escribe el kilometraje ',
-                      border: InputBorder.none,
-                    ),
+                    controller: _kilometraje,
+                    decoration:
+                        InputDecoration(labelText: 'ingrese kilometraje'),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -644,44 +702,106 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                   ),
                 ),
                 SizedBox(height: 20),
-                Container(
-                  margin: EdgeInsets.all(20),
-                  width: double.infinity,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 243, 135, 33),
-                        Color.fromARGB(255, 243, 135, 33)
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () {},
-                      borderRadius: BorderRadius.circular(30),
-                      child: Center(
-                        child: Text(
-                          "Publicar auto",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+
+                ElevatedButton(
+                    onPressed: () async {
+                      //inputs text
+                      String descripcion = _descripcion.text;
+                      String color = _colorAuto.text;
+                      //inputs int
+                      int kilometraje = int.parse(_kilometraje.text);
+                      int precio = int.parse(_precio.text);
+
+                      //Checkbox
+                      bool? carroceria = _carroceriaSelected;
+                      bool? climatizacion = _climatizacionSelected;
+                      bool? suspension = _suspensionSelected;
+                      bool? radio = _radioSelected;
+                      bool? pantallaTactil = _pantallaTactilSelected;
+                      bool? bluetooth = _bluetoothSelected;
+                      bool? publicarLetrero = _publicarLetreroSelected;
+
+                      //DropdownButton
+                      String selectedBrand = 'Selecciona la marca del auto';
+                      String selectedVersion = 'Selecciona la versión del auto';
+                      String selectedYear = 'Selecciona el año del auto';
+                      String selectCombustible =
+                          'Selecciona el conbustible del auto';
+                      String selectedTransmission = 'Selecciona la transmisión';
+
+                      //color
+                      if (!isColorValid(color)) {
+                        mostrarErrorConSnackBar(
+                            context, 'Datos incorrectos,solo letras');
+                        return;
+                      }
+                      //descripcion
+                      if (!isDescripcionValid(descripcion)) {
+                        mostrarErrorConSnackBar(
+                            context, 'Datos incorrectos,solo letras');
+                        return;
+                      }
+                      //kilometraje
+                      if (!iskilometrajeValid(kilometraje as String)) {
+                        mostrarErrorConSnackBar(
+                            context, 'Datos incorrectos,solo numeros');
+                        return;
+                      }
+                      //precio
+                      if (!isPrecioValid(precio as String)) {
+                        mostrarErrorConSnackBar(
+                            context, 'Datos incorrectos,solo numeros');
+                        return;
+                      }
+
+                      //Contacto
+
+                      Object response =
+                          await createVehiculoService.crearSubirAuto(
+                              descripcion,
+                              color as bool,
+                              kilometraje as bool,
+                              precio as String,
+                              carroceria as int,
+                              climatizacion,
+                              suspension as String,
+                              radio as String,
+                              pantallaTactil,
+                              bluetooth as String,
+                              publicarLetrero,
+                              selectedBrand as bool,
+                              selectedVersion,
+                              selectedYear as bool,
+                              selectCombustible as int,
+                              selectedTransmission as int,
+                              widget.profile);
+
+                      //create_contacto
+
+                      print(response);
+                      //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
+
+                      if (response is SubirAuto) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => perfilScreen()));
+                        return;
+                      }
+                      if (response is SubirAuto_Erorr)
+                      //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
+
+                      //alerta de error con AlertDialog
+                      {
+                        mostrarErrorConAlertDialog(
+                            context, "Error de inicio de sesión");
+                        return;
+                      }
+                      print((message: 'Error pero pase'));
+                      // ignore: use_build_context_synchronously
+                      mostrarErrorConAlertDialog(context, 'Error inesperado');
+                    },
+                    child: Text('Crear Perfil')),
                 SizedBox(height: 50),
               ],
             ),

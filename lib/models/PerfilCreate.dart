@@ -32,13 +32,14 @@ class PerfilCreate {
         fecha: data['data']['fecha'],
         direccion: data['data']['direccion'],
         comuna: data['data']['comuna'],
-        contacto: data['data']['contacto'],
+        contacto: int.parse(data['data']['contacto']),
         createdAt: DateTime.parse(data['data']['createdAt']),
         updatedAt: DateTime.parse(
           data['data']['updatedAt'],
         ));
   }
 }
+
 //Metodo para convertir el usuario a un mapa de datos, util para enviar daroa una API o guardarlos localmente
 /* Map<String, dynamic> toJson(){
   return{
