@@ -276,8 +276,7 @@ class BtnUbicacion extends StatelessWidget {
       children: [
         Container(
           /*     color: Colors.red, */
-          height: size.height * 0.4,
-          width: size.width * 0.4,
+
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
             child: Column(
@@ -505,6 +504,7 @@ class botonContactar2 extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
+        SizedBox(height: 10),
         Container(
           /*     color: Colors.red, */
           width: 150,

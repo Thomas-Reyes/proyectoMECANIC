@@ -1,7 +1,3 @@
-/* import 'package:appfrontautos/utils/isEmailValid.dart';
-        import 'package:appfrontautos/utils/isPasswordValid.dart'; */
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:vidaomuerte/models/LoginConfirm.dart';
 import 'package:vidaomuerte/models/LoginConfirm_Erorr.dart';
@@ -12,7 +8,6 @@ import 'package:http/http.dart' as http;
 
 import '../services/LoginService.dart';
 import '../utils/isEmailValid.dart';
-import '../utils/isPasswordValid.dart';
 
 class LoginScreen extends StatefulWidget {
   final PerfilCreate? perfil;
@@ -23,7 +18,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final _usernameController = TextEditingController(text: 'anna@gmail.com');
+  final _usernameController = TextEditingController(text: 'ann1a@gmail.com');
   final _passwordController = TextEditingController(text: 'Anna997!');
 
 //userService debe llamar al servicio que en esta oportunidad es la clase LoginService, que es de la carpeta services,del archivo user.dart
@@ -93,13 +88,14 @@ class LoginScreenState extends State<LoginScreen> {
                         Object response =
                             await userService.Login(username, password);
 
-                        //quede en la de mostrar mensaje por snackbar minuto 11:28 video 3
+                        //consultar por la certificado de github
 
                         if (response is LoginConfirm) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeScreens()));
+                                  builder: (context) =>
+                                      HomeScreens(/* user: response */)));
                           return;
                         }
                         if (response is LoginConfirm_Erorr) {

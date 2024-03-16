@@ -9,24 +9,24 @@ class NewestItemswidget extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        padding: EdgeInsets.only(),
         child: Row(
           children: [
             for (int i = 0; i < 10; i++)
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  margin: EdgeInsets.only(left: 10, right: 15),
                   width: 380,
-                  height: 200,
+                  height: 220,
                   decoration: BoxDecoration(
                       color: Color(0xFFD9D9D9),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 3,
-                          blurRadius: 7,
+                          spreadRadius: 4,
+                          blurRadius: 2.5,
                           offset: Offset(0, 3),
                         ),
                       ]),
@@ -36,10 +36,10 @@ class NewestItemswidget extends StatelessWidget {
                         //buscar que significa,que hace y que incorporarle
 
                         child: Container(
+                          margin: EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          margin: EdgeInsets.all(5),
                           child: Stack(
                               alignment: Alignment.centerRight,
                               children: [
@@ -66,32 +66,34 @@ class NewestItemswidget extends StatelessWidget {
                               ]),
                         ),
                       ),
+                      SizedBox(height: 18),
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: Column(
                           children: [
                             Text(
-                              'MARCA DEL VEHICULO',
+                              'Mercedes Bens',
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 20,
                                   fontWeight: FontWeight
                                       .bold //pone las letras en negrita
                                   ),
                             ),
                             SizedBox(height: 8),
+
                             Container(
                               child: Row(
                                 children: [
                                   SizedBox(width: 2),
                                   Icon(
-                                    Icons.ac_unit_rounded,
+                                    Icons.map,
                                     size: 20,
                                     color: Color(0xFFE65C00),
                                   ),
                                   Text('30.972km'),
                                   SizedBox(width: 15),
                                   Icon(
-                                    Icons.ac_unit_rounded,
+                                    Icons.calendar_month,
                                     size: 20,
                                     color: Color(0xFFE65C00),
                                   ),
@@ -103,15 +105,16 @@ class NewestItemswidget extends StatelessWidget {
                             Container(
                               child: Row(
                                 children: [
+                                  SizedBox(width: 20),
                                   Icon(
-                                    Icons.ac_unit_rounded,
+                                    Icons.water_drop_outlined,
                                     size: 20,
                                     color: Color(0xFFE65C00),
                                   ),
                                   Text('Bencina'),
-                                  SizedBox(width: 20),
+                                  SizedBox(width: 30),
                                   Icon(
-                                    Icons.ac_unit_rounded,
+                                    Icons.settings_input_component,
                                     size: 20,
                                     color: Color(0xFFE65C00),
                                   ),
@@ -122,8 +125,9 @@ class NewestItemswidget extends StatelessWidget {
                             SizedBox(height: 8),
                             Text(
                               ' \$ 13.855.926',
+                              textAlign: TextAlign.start,
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 20,
                                   color: Color(0xFF001996),
                                   fontWeight: FontWeight
                                       .bold //pone las letras en negrita
@@ -144,7 +148,6 @@ class NewestItemswidget extends StatelessWidget {
                                 /*   fontWeight: FontWeight.bold */ //pone las letras en negrita
                               ),
                             ),
-                            SizedBox(height: 8),
 
                             //button
                             botonContactar2(),

@@ -139,12 +139,12 @@ class CrearPerfilState extends State<CrearPerfil> {
 
                         //Contacto
 
-                        if (!isContactoValid(create_contacto as String)) {
+                        /*   if (!isContactoValid(create_contacto as String)) {
                           mostrarErrorConSnackBar(
                               context, 'Contacto Incorrecto');
                           return;
                         }
-
+ */
                         Object response = await createuserService.createPerfil(
                             create_nombreApellido,
                             create_rut,

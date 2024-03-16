@@ -9,6 +9,15 @@ class ubicacionScreen extends StatelessWidget {
     return Scaffold(
         body: ListView(
           children: [
+            Container(
+              height: 400,
+              margin: EdgeInsets.only(top: 25),
+              child: Image.asset(
+                'assets/imgmapa.png',
+                fit: BoxFit.fill,
+              ),
+            ),
+
             // Otros widgets que desees en la pantalla
             // Muestra el mapa de Google Maps dentro del contenedor
             // Otros widgets que desees en la pantalla

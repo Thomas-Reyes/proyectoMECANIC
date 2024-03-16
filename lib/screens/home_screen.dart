@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:vidaomuerte/models/UserCreate.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
 
-class HomeScreens extends StatelessWidget {
+class HomeScreens extends StatefulWidget {
+/*   final UserCreate user; */
+  const HomeScreens({
+    super.key,
+    /*  required this.user */
+  });
+  @override
+  HomeState createState() => HomeState();
+}
+
+class HomeState extends State<HomeScreens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +52,18 @@ class HomeScreens extends StatelessWidget {
                           ),
                         ),
                       ),
-
+                      /*  Container(
+                          child: Column(
+                        children: [
+                          Icon(Icons.map),
+                          Icon(Icons.water_drop_outlined),
+                          Icon(Icons.calendar_month),
+                          Icon(Icons.settings_input_component),
+                          Icon(Icons.mode_edit_outlined),
+                          Icon(Icons.delete_outline_outlined),
+                          // 
+                        ],
+                      )), */
                       //categoria de Widget
                       CategoriasWidget(),
 

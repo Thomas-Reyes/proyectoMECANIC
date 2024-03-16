@@ -65,19 +65,13 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
   bool _bluetoothSelected = false;
   bool _publicarLetreroSelected = false;
 
-  late String _selectedBrand;
-  late String _selectedVersion;
-  late String _selectedYear;
-  late String _selectedTransmission;
-  late String _selectedConbustible;
-
   final TextEditingController _descripcion = TextEditingController(
       text: 'es un vehículo motorizado con ruedas utilizado');
   final TextEditingController _precio = TextEditingController(text: '1200552');
   final TextEditingController _kilometraje =
       TextEditingController(text: '45874');
   final TextEditingController _colorAuto = TextEditingController(text: 'Azul');
-
+/* 
   List<String> _carBrands = [
     'Selecciona la marca del auto',
     'Toyota',
@@ -132,7 +126,12 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
     'CVT',
     'Semi-automática',
   ];
-
+  late String _selectedBrand;
+  late String _selectedVersion;
+  late String _selectedYear;
+  late String _selectedTransmission;
+  late String _selectedConbustible;
+   */
   final createVehiculoService = SubirAutoService();
 
   @override
@@ -225,7 +224,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         ),
                       ),
                     ),
-
+/* 
                     Container(
                       margin: EdgeInsets.all(10),
                       width: double.infinity,
@@ -255,10 +254,10 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                           );
                         }).toList(),
                       ),
-                    ),
+                    ), */
                     SizedBox(height: 20),
                     //optionbuton 2
-                    Container(
+                    /*     Container(
                       margin: EdgeInsets.all(10),
                       width: double.infinity,
                       padding: EdgeInsets.all(
@@ -287,10 +286,10 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                           );
                         }).toList(),
                       ),
-                    ),
+                    ), */
                     SizedBox(height: 20),
                     //optionbuton 3
-                    Container(
+                    /*   Container(
                       margin: EdgeInsets.all(10),
                       width: double.infinity,
                       padding: EdgeInsets.all(
@@ -309,7 +308,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         ),
                         onChanged: (String? newValue) {
                           setState(() {
-                            _selectedYear = newValue!;
+                            _selectedYear = newValue;
                           });
                         },
                         items: _carYears
@@ -320,11 +319,11 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                           );
                         }).toList(),
                       ),
-                    ),
+                    ), */
                     SizedBox(height: 20),
 
                     //optionbuton 4
-                    Container(
+                    /*  Container(
                       margin: const EdgeInsets.all(10),
                       width: double.infinity,
                       padding: const EdgeInsets.all(
@@ -353,9 +352,9 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         }).toList(),
                       ),
                     ),
-
+ */
                     SizedBox(height: 20),
-                    //optionbuton 5
+                    /*      //optionbuton 5
                     Container(
                       margin: EdgeInsets.all(10),
                       width: double.infinity,
@@ -384,7 +383,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                           );
                         }).toList(),
                       ),
-                    ),
+                    ), */
                   ],
                 ),
                 SizedBox(height: 20),

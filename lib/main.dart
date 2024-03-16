@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: 'inicio',
+        initialRoute: 'home',
         routes: {
           //
           'inicio': (_) => onboarding_Screens(),
