@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vidaomuerte/models/Carros.dart';
+import 'package:vidaomuerte/models/PerfilCreate.dart';
+import 'package:vidaomuerte/models/SubirAuto_Erorr.dart';
 
-//quede en el minuto 5:55
-class MostrarAutosService {
-  Future<Cars> mostrarTodosLosAutos() async {
+//agregar rut-telefono-comuna-direccion-fecha de nacimiento
+class CarsService {
+  Future<Cars> getAllCars() async {
     //se define el header
-    Map<String, String> headers = {'Content-Type': 'application/json'};
+    final Map<String, String> headers = {'Content-Type': 'application/json'};
 
-    //se define el URL
-    final Uri url = Uri.parse(
+    final Uri url = Uri.parse(//se define el URL
         'https://proyet-personal-clase1-backend-dev-dccm.4.us-1.fl0.io/api/cargar-autos');
 
     try {
@@ -24,11 +25,12 @@ class MostrarAutosService {
       if (response.statusCode == 200) {
         return Cars.fromJson(
             data); // 'User' sale de la clase User del modelo Usuario valido
-      } else {
-        return Cars(cars: []); //lista vacia
-      } // 'UserErorr' sale de la clase User del modelo UserErorr invalido
+      }
+      print((data, message: 'Error de algo raro'));
+      return Cars(cars: []);
+      // 'UserErorr' sale de la clase User del modelo UserErorr invalido
     } catch (e) {
-      return Cars(cars: []); //lista vacia
+      return Cars(cars: []);
     }
   }
 }

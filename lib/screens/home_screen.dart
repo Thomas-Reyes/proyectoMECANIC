@@ -52,18 +52,7 @@ class HomeState extends State<HomeScreens> {
                           ),
                         ),
                       ),
-                      /*  Container(
-                          child: Column(
-                        children: [
-                          Icon(Icons.map),
-                          Icon(Icons.water_drop_outlined),
-                          Icon(Icons.calendar_month),
-                          Icon(Icons.settings_input_component),
-                          Icon(Icons.mode_edit_outlined),
-                          Icon(Icons.delete_outline_outlined),
-                          // 
-                        ],
-                      )), */
+
                       //categoria de Widget
                       CategoriasWidget(),
 

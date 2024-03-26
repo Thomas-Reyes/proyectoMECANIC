@@ -3,6 +3,7 @@ import 'package:vidaomuerte/models/LoginConfirm.dart';
 import 'package:vidaomuerte/models/LoginConfirm_Erorr.dart';
 import 'package:vidaomuerte/models/PerfilCreate.dart';
 import 'package:vidaomuerte/screens/crear_Perfil.dart';
+import 'package:vidaomuerte/utils/isPasswordValid.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,9 +19,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final _usernameController = TextEditingController(text: 'ann1a@gmail.com');
-  final _passwordController = TextEditingController(text: 'Anna997!');
-
+  bool _hideHint = false;
+  final _usernameController =
+      TextEditingController(/* text: 'ann1a@gmail.com' */);
+  final _passwordController = TextEditingController(/* text: 'Anna997!' */);
+  final focusNode = FocusNode();
 //userService debe llamar al servicio que en esta oportunidad es la clase LoginService, que es de la carpeta services,del archivo user.dart
   final userService = LoginService();
 
@@ -34,7 +37,9 @@ class LoginScreenState extends State<LoginScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                'assets/volante.png'), // Aquí se agrega la imagen de fondo
+              'assets/volante.png',
+            ),
+            fit: BoxFit.fill, // Aquí se agrega la imagen de fondo
           ),
         ),
         child: SingleChildScrollView(
@@ -45,71 +50,175 @@ class LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(height: size.height * 0.02),
+                  SizedBox(height: size.height * 0.16),
+
                   TxtLogin(),
+
                   SizedBox(height: size.height * 0.02),
 
                   //correo
                   SizedBox(height: size.height * 0.02),
 
-                  TextField(
-                    controller: _usernameController,
-                    decoration: InputDecoration(labelText: 'Emaill'),
-                  ),
-                  TextField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(labelText: 'Password'),
-                    obscureText: true,
+                  Container(
+                    margin: EdgeInsets.only(left: 20, bottom: 6),
+                    child: Row(children: [
+                      Icon(
+                        Icons.person_pin_outlined,
+                        color: Color(0xFF001996),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Usuario',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          decorationThickness: 1.5,
+                        ),
+                      )
+                    ]),
                   ),
 
-                  SizedBox(height: size.height * 0.1),
-                  //constraseña
-                  Texbuton(), // convertirlo en un texbuton
-                  SizedBox(height: size.height * 0.02),
+                  SizedBox(height: 5),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _usernameController,
+                      decoration: InputDecoration(
+                        hintText: 'Ingresa tu correo electrónico ',
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFF001996)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFFE65C00)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Color(0xD9D9D9D9),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+
+                  Container(
+                    margin: EdgeInsets.only(left: 20, bottom: 6),
+                    child: Row(children: [
+                      Icon(
+                        Icons.lock_person_outlined,
+                        color: Color(0xFF001996),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Contraseña',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          decorationThickness: 1.5,
+                        ),
+                      )
+                    ]),
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        hintText: 'Ingresa tu contraseña ',
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFF001996)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFFE65C00)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Color(0xD9D9D9D9),
+                      ),
+                      obscureText: true,
+                    ),
+                  ),
+
+                  SizedBox(height: 40),
+
+                  Texbuton(),
+
+                  SizedBox(height: 40),
 
                   // CONTENIDO DE BOTON DE VALIDACION
                   ElevatedButton(
-                      onPressed: () async {
-                        //definir valiables captura de valor de los campos de text o TextField
-                        String username = _usernameController.text;
-                        String password = _passwordController.text;
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(Size(352, 30)),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.fromLTRB(60, 20, 60, 20)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xFF001996)),
+                      foregroundColor:
+                          MaterialStateProperty.all(Color(0xFFEFF0F1)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(color: Color(0xFF001996), width: 1),
+                      )),
+                    ),
+                    onPressed: () async {
+                      //definir valiables captura de valor de los campos de text o TextField
+                      String username = _usernameController.text;
+                      String password = _passwordController.text;
 
-                        if (!isEmailValid(username)) {
-                          mostrarErrorConSnackBar(context, 'Email incorrecto');
-                          return;
-                        }
-                        /*   //consultar por que si esta bn la password no me deja entrar
-                        if (!isPasswordValid(password)) {
-                          mostrarErrorConSnackBar(context,
-                              'La constraseña debe tener al menos 8 caracteres, incluir 1 Mayuscula, 1 numero y un caracter especial, que no se " @ o . " ');
-                          return;
-                        }
- */
-                        Object response =
-                            await userService.Login(username, password);
+                      if (!isEmailValid(username)) {
+                        mostrarErrorConSnackBar(context, 'Email incorrecto');
+                        return;
+                      }
+                      //consultar por que si esta bn la password no me deja entrar
+                      if (!isPasswordValid(password)) {
+                        mostrarErrorConSnackBar(context,
+                            'La constraseña debe tener al menos 8 caracteres, incluir 1 Mayuscula, 1 numero y un caracter especial, que no se " @ o . " ');
+                        return;
+                      }
 
-                        //consultar por la certificado de github
+                      Object response =
+                          await userService.Login(username, password);
 
-                        if (response is LoginConfirm) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomeScreens(/* user: response */)));
-                          return;
-                        }
-                        if (response is LoginConfirm_Erorr) {
-                          //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
+                      if (response is LoginConfirm) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreens(
+                                    /* user: response */))); // al momento de comentar el user, funciona la app
+                        return;
+                      }
+                      if (response is LoginConfirm_Erorr) {
+                        //mostrarErrorConSnackBar(context, response.message);//alerta de error con snackbar
 
-                          //alerta de error con AlertDialog
-                          mostrarErrorConAlertDialog(
-                              context, "Error de inicio de sesión");
-                          return;
-                        }
-                        // ignore: use_build_context_synchronously
-                        mostrarErrorConAlertDialog(context, 'Error inesperado');
-                      },
-                      child: Text('Iniciar sesion')),
+                        //alerta de error con AlertDialog
+                        mostrarErrorConAlertDialog(
+                            context, "Error de inicio de sesión");
+                        return;
+                      }
+                      // ignore: use_build_context_synchronously
+                      mostrarErrorConAlertDialog(context, 'Error inesperado');
+                    },
+                    child: Text(' Ingresar '),
+                  ),
 
                   /*  bool valid = (await userService.login(
                             username, password)) as bool;
@@ -130,13 +239,12 @@ class LoginScreenState extends State<LoginScreen> {
                               "La constraseña debe tener al menos 8 caracteres,incluir una letra mayuscula, un numero y un caracter especial, que no sea '@ , .'");
                           return;
                         }  */
-
-                  SizedBox(height: size.height * 0.02),
+                  SizedBox(height: 40),
                   BtnLogin(),
                   SizedBox(height: size.height * 0.001),
                   TxtLogin3(),
                   SizedBox(height: size.height * 0.02),
-                  BtnRedesSociales()
+                  BtnRedesSociales(),
                 ],
               ),
             ),

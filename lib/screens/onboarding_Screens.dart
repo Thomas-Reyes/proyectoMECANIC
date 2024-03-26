@@ -1,6 +1,7 @@
 /* import 'package:appfrontautos/widgets/botones.dart'; */
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:vidaomuerte/widgets/customText.dart';
 import 'package:vidaomuerte/widgets/widget.dart';
 
 class onboarding_Screens extends StatelessWidget {
@@ -11,15 +12,6 @@ class onboarding_Screens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnBoardingSlider(
-      finishButtonText: 'Register',
-      onFinish: () {
-        /*  Navigator.push(
-          context,
-          /* CupertinoPageRoute(
-            builder: (context) => const RegisterPage(),
-          ), */
-        ); */
-      },
       finishButtonStyle: FinishButtonStyle(
         backgroundColor: kDarkBlueColor,
       ),
@@ -28,7 +20,6 @@ class onboarding_Screens extends StatelessWidget {
         style: TextStyle(
           fontSize: 16,
           color: kDarkBlueColor,
-          fontWeight: FontWeight.w600,
         ),
       ),
       /*    trailing: Text(
@@ -57,11 +48,11 @@ class onboarding_Screens extends StatelessWidget {
           fit: BoxFit.fill,
         ),
         Image.asset(
-          'assets/autoverde.png',
+          'assets/autogris.png',
           fit: BoxFit.fill,
         ),
         Image.asset(
-          'assets/autogris.png',
+          'assets/autoverde.png',
           fit: BoxFit.fill,
         ),
       ],
@@ -70,21 +61,22 @@ class onboarding_Screens extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const SizedBox(
-                height: 450,
+                height: 410,
               ),
               Text(
                 ' Garantía post venta en nuestras planta',
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontFamily: 'Roboto',
                   color:
                       Color(0xFF001996) /* Color(0xFFE65C00) color naranja */,
-                  fontSize: 25,
+                  fontSize: 36,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -93,8 +85,8 @@ class onboarding_Screens extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFFE65C00),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               botonesprincipal(),
@@ -106,18 +98,20 @@ class onboarding_Screens extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const SizedBox(
-                height: 480,
+                height: 440,
               ),
               Text(
-                'Tenemos el auto que tanto buscas',
+                'Tenemos el auto que  tanto buscas',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xFF001996),
-                  fontSize: 25,
+                  fontFamily: 'Roboto',
+                  color:
+                      Color(0xFF001996) /* Color(0xFFE65C00) color naranja */,
+                  fontSize: 36,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -126,8 +120,8 @@ class onboarding_Screens extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFFE65C00),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               botonesprincipal(),
@@ -143,14 +137,16 @@ class onboarding_Screens extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const SizedBox(
-                height: 460,
+                height: 470,
               ),
               Text(
                 'Comunicación sin intermediarios ',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xFF001996),
-                  fontSize: 25,
+                  fontFamily: 'Roboto',
+                  color:
+                      Color(0xFF001996) /* Color(0xFFE65C00) color naranja */,
+                  fontSize: 30,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -159,8 +155,8 @@ class onboarding_Screens extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFFE65C00),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               botonesprincipal(),

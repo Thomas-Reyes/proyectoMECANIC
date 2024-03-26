@@ -1,13 +1,13 @@
-class Carros {
-  final List<Carros> carros;
-  Carros({
-    required this.carros,
+class Cars {
+  final List<Cars> cars;
+  Cars({
+    required this.cars,
   });
 
-  factory Carros.fromJson(Map<String, dynamic> json) {
-    return Carros(
-      carros: List<Carros>.from(
-          json['data'].map((car) => Carros.fromJson(car)).toList()),
+  factory Cars.fromJson(Map<String, dynamic> json) {
+    return Cars(
+      cars: List<Cars>.from(
+          json['data'].map((cars) => Cars.fromJson(cars)).toList()),
     );
   }
 }

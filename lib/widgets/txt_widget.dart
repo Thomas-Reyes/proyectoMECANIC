@@ -119,24 +119,27 @@ class Texbuton extends StatelessWidget {
     return Column(
       children: [
         Container(
-          color: Colors.amber,
+          margin: EdgeInsets.only(right: 20),
           child: SizedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     // Acción cuando se presiona el botón de texto "Recuperar Contraseña"
                     Navigator.pushNamed(context, 'RecuperarCuenta');
                   },
                   child: Text(
                     'Recuperar Contraseña',
                     style: TextStyle(
-                      color: Color(0xFF001FBC),
+                      color: Color(0xFFE65C00),
                       fontFamily: 'Roboto',
                       fontSize: 15.0,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                      decorationThickness: 1.5,
+                      decorationColor: Color(0xFFE65C00),
                     ),
                   ),
                 ),

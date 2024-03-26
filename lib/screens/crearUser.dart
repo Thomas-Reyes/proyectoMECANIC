@@ -19,10 +19,9 @@ class CrearUser extends StatefulWidget {
 class CreateUserState extends State<CrearUser> {
 //variables de almacenamiento
 
-  final TextEditingController _email_controller =
-      TextEditingController(text: 'anna@gmail.com');
-  final TextEditingController _password_controller =
-      TextEditingController(text: 'Anna998!');
+  final _email_controller = TextEditingController(text: 'anna@gmail.com');
+  final _password_controller = TextEditingController(text: 'Anna998!');
+  final _confirmPassword_controller = TextEditingController(text: 'Anna998!');
 
   final createuserService = UserService();
 
@@ -57,19 +56,261 @@ class CreateUserState extends State<CrearUser> {
 
                   SizedBox(height: size.height * 0.02),
 
-                  TextField(
-                    controller: _email_controller,
-                    decoration: InputDecoration(labelText: 'email'),
+                  Container(
+                    margin: EdgeInsets.only(left: 20, bottom: 6),
+                    child: const Row(children: [
+                      Icon(
+                        Icons.person_pin_outlined,
+                        color: Color(0xFF001996),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Usuario',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          decorationThickness: 1.5,
+                        ),
+                      )
+                    ]),
                   ),
-                  TextField(
-                    controller: _password_controller,
-                    decoration: InputDecoration(labelText: 'password'),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _email_controller,
+                      decoration: InputDecoration(
+                        hintText: 'Ingresa tu correo electrónico',
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFF001996)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFFE65C00)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Color(0xD9D9D9D9),
+                      ),
+                    ),
                   ),
-                  SizedBox(height: size.height * 0.02),
+                  SizedBox(height: 30),
+
+                  Container(
+                    margin: EdgeInsets.only(left: 20, bottom: 6),
+                    child: const Row(children: [
+                      Icon(
+                        Icons.lock_person_outlined,
+                        color: Color(0xFF001996),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Contraseña',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          decorationThickness: 1.5,
+                        ),
+                      )
+                    ]),
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _password_controller,
+                      decoration: InputDecoration(
+                        hintText: 'Ingresa tu contraseña',
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFF001996)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFFE65C00)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Color(0xD9D9D9D9),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+
+                  Container(
+                    margin: EdgeInsets.only(left: 20, bottom: 6),
+                    child: const Row(children: [
+                      Icon(
+                        Icons.lock_person_outlined,
+                        color: Color(0xFF001996),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Confirmar contraseña',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 15.0,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          decorationThickness: 1.5,
+                        ),
+                      )
+                    ]),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _confirmPassword_controller,
+                      decoration: InputDecoration(
+                        hintText: 'Confirma tu contraseña',
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFF001996)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFFE65C00)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        filled: true,
+                        fillColor: Color(0xD9D9D9D9),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 50),
+
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 70),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'La contraseña debe incluir:',
+                              style: TextStyle(
+                                color: Color(0xFF001996),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.play_arrow_outlined,
+                                  size: 20,
+                                  color: Color(0xFFE65C00),
+                                ),
+                                SizedBox(
+                                    width:
+                                        4), // Espacio entre el icono y el texto
+                                Text(
+                                  'Una mayúscula',
+                                  style: TextStyle(
+                                    color: Color(0xFF001996),
+                                    fontFamily: 'Roboto',
+                                    fontSize: 20,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    decorationThickness: 1.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.play_arrow_outlined,
+                                  size: 20,
+                                  color: Color(0xFFE65C00),
+                                ),
+                                SizedBox(width: 4),
+                                Text(
+                                  'Un numero',
+                                  style: TextStyle(
+                                    color: Color(0xFF001996),
+                                    fontFamily: 'Roboto',
+                                    fontSize: 20,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    decorationThickness: 1.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.play_arrow_outlined,
+                                  size: 20,
+                                  color: Color(0xFFE65C00),
+                                ),
+                                SizedBox(width: 4),
+                                Text(
+                                  'Un carácter especial',
+                                  style: TextStyle(
+                                    color: Color(0xFF001996),
+                                    fontFamily: 'Roboto',
+                                    fontSize: 20,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    decorationThickness: 1.5,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 50),
+
                   ElevatedButton(
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(352, 30)),
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.fromLTRB(60, 20, 60, 20)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xFF001996)),
+                        foregroundColor:
+                            MaterialStateProperty.all(Color(0xFFEFF0F1)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Color(0xFF001996), width: 1),
+                        )),
+                      ),
                       onPressed: () async {
                         String create_email = _email_controller.text;
                         String create_password = _password_controller.text;
+                        String confirmPassword =
+                            _confirmPassword_controller.text;
 
                         if (!isEmailValid(create_email)) {
                           mostrarErrorConSnackBar(context, 'Email incorrecto');
@@ -79,6 +320,12 @@ class CreateUserState extends State<CrearUser> {
                         if (!isPasswordValid(create_password)) {
                           mostrarErrorConSnackBar(context,
                               'La constraseña debe tener al menos 8 caracteres, incluir 1 Mayuscula, 1 numero y un caracter especial, que no se " @ o . " ');
+                          return;
+                        }
+
+                        if (create_password != confirmPassword) {
+                          mostrarErrorConSnackBar(
+                              context, 'La constraseña NO coinciden');
                           return;
                         }
 
@@ -121,34 +368,6 @@ class CreateUserState extends State<CrearUser> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(),
-                          ElevatedButton(
-                            onPressed: () {
-                              //codigon para minimizar el teclado
-                              FocusScope.of(context).requestFocus(FocusNode());
-
-                              //* TODO: imprimir valores del formulario
-
-                              /*  Navigator.pushNamed( 
-                        context, 'login');  */ // Acción cuando se presiona el botón
-                            },
-                            style: ButtonStyle(
-                              minimumSize:
-                                  MaterialStateProperty.all(Size(352, 50)),
-                              padding: MaterialStateProperty.all(
-                                  EdgeInsets.fromLTRB(60, 10, 60, 10)),
-                              backgroundColor:
-                                  MaterialStateProperty.all(Color(0xFF001996)),
-                              foregroundColor:
-                                  MaterialStateProperty.all(Color(0xFFEFF0F1)),
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                side: BorderSide(
-                                    color: Color(0xFF001996), width: 1),
-                              )),
-                            ),
-                            child: Text('Crear Usuario'),
-                          ),
                           SizedBox(height: 18),
                         ],
                       ),

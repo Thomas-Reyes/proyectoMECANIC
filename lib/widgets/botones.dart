@@ -11,44 +11,20 @@ class BtnLogin extends StatelessWidget {
       children: [
         Container(
           /*     color: Colors.red, */
-          height: size.height * 0.2,
-          width: size.width * 0.8,
+
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(),
-                /*        ElevatedButton(
-                  onPressed: () {
-                    // Acción cuando se presiona el botón
-                    Navigator.pushNamed(context, 'home');
-                  },
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(352, 20)),
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.fromLTRB(60, 10, 60, 10)),
-                    backgroundColor:
-                        MaterialStateProperty.all(Color(0xFF001996)),
-                    foregroundColor:
-                        MaterialStateProperty.all(Color(0xFFEFF0F1)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(color: Color(0xFF001996), width: 1),
-                    )),
-                  ),
-                  child: Text('Ingresar'),
-                ), */
-                SizedBox(height: 18),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context,
                         'CrearUsuario'); // Acción cuando se presiona el botón
                   },
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(352, 20)),
+                    minimumSize: MaterialStateProperty.all(Size(352, 30)),
                     padding: MaterialStateProperty.all(
-                        EdgeInsets.fromLTRB(60, 10, 60, 10)),
+                        EdgeInsets.fromLTRB(60, 20, 60, 20)),
                     backgroundColor:
                         MaterialStateProperty.all(Color(0xFFEFF0F1)),
                     foregroundColor:
@@ -338,7 +314,7 @@ class botonesprincipal extends StatelessWidget {
                         'CrearUsuario'); // Acción cuando se presiona el botón
                   },
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(500, 50)),
+                    minimumSize: MaterialStateProperty.all(Size(350, 44)),
                     padding: MaterialStateProperty.all(
                         EdgeInsets.fromLTRB(60, 10, 60, 10)),
                     backgroundColor:
@@ -352,14 +328,14 @@ class botonesprincipal extends StatelessWidget {
                   ),
                   child: Text('Crear Usuario'),
                 ),
-                SizedBox(height: 18),
+                SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(
                         context, 'login'); // Acción cuando se presiona el botón
                   },
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(500, 50)),
+                    minimumSize: MaterialStateProperty.all(Size(350, 44)),
                     padding: MaterialStateProperty.all(
                         EdgeInsets.fromLTRB(60, 10, 60, 10)),
                     backgroundColor:
@@ -373,14 +349,14 @@ class botonesprincipal extends StatelessWidget {
                   ),
                   child: Text('Ingresar'),
                 ),
-                SizedBox(height: 18),
+                SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(
                         context, 'vitrina'); // tiene que diriguir a vitrina
                   },
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(500, 50)),
+                    minimumSize: MaterialStateProperty.all(Size(350, 44)),
                     padding: MaterialStateProperty.all(
                         EdgeInsets.fromLTRB(60, 10, 60, 10)),
                     backgroundColor:
@@ -389,7 +365,7 @@ class botonesprincipal extends StatelessWidget {
                         Color.fromARGB(255, 255, 255, 255)),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(color: Color(0xFF001996), width: 1),
+                      side: BorderSide(color: Color(0xFFE65C00), width: 1),
                     )),
                   ),
                   child: Text('Ver vitrina'),
