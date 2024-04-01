@@ -22,7 +22,7 @@ class perfilScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: 20, left: 10),
                 child: Text(
-                  'Tus publicaciones',
+                  'Tuqs publicaciones',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
@@ -31,6 +31,7 @@ class perfilScreen extends StatelessWidget {
                 ),
               ),
             ),
+            NewestItemswidget3(),
             SizedBox(height: 20),
           ],
         ),

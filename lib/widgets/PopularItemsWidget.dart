@@ -68,7 +68,7 @@ class PopularItemsWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'MARCA DEL VEHICULO',
+                          'Mercedes Bens',
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight:
@@ -80,14 +80,14 @@ class PopularItemsWidget extends StatelessWidget {
                           child: Row(
                             children: [
                               Icon(
-                                Icons.ac_unit_rounded,
+                                Icons.map,
                                 size: 20,
                                 color: Color(0xFFE65C00),
                               ),
                               Text('30.972km'),
                               SizedBox(width: 5),
                               Icon(
-                                Icons.ac_unit_rounded,
+                                Icons.calendar_month,
                                 size: 20,
                                 color: Color(0xFFE65C00),
                               ),
@@ -100,14 +100,14 @@ class PopularItemsWidget extends StatelessWidget {
                           child: Row(
                             children: [
                               Icon(
-                                Icons.ac_unit_rounded,
+                                Icons.water_drop_outlined,
                                 size: 20,
                                 color: Color(0xFFE65C00),
                               ),
                               Text('Bencina'),
                               SizedBox(width: 18),
                               Icon(
-                                Icons.ac_unit_rounded,
+                                Icons.settings_input_component,
                                 size: 20,
                                 color: Color(0xFFE65C00),
                               ),

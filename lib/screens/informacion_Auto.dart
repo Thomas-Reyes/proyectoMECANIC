@@ -15,13 +15,13 @@ class informacionAuto extends StatelessWidget {
             const Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 10, left: 10),
+                  padding: EdgeInsets.only(top: 20, left: 40),
                   child: Text(
-                    'Caracteristicas',
+                    'Descripción del auto',
                     style: TextStyle(
                       color: Color(0xFF001FBC),
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 30,
                     ),
                   ),
                 ),
@@ -31,11 +31,10 @@ class informacionAuto extends StatelessWidget {
             const Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(top: 5, left: 40),
                   child: Text(
                     'Maxus T60',
                     style: TextStyle(
-                      color: Color(0xFF001FBC),
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
@@ -57,7 +56,7 @@ class informacionAuto extends StatelessWidget {
 
             //text informacion
             const Padding(
-              padding: EdgeInsets.only(top: 10, left: 10),
+              padding: EdgeInsets.only(top: 5, left: 10),
               child: Text(
                 'Informacion del auto',
                 style: TextStyle(
@@ -72,16 +71,32 @@ class informacionAuto extends StatelessWidget {
               child: const Row(
                 children: [
                   SizedBox(width: 20),
-                  Icon(Icons.ac_unit_rounded, size: 25),
+                  Icon(
+                    Icons.water_drop_outlined,
+                    size: 25,
+                    color: Color(0xFFE65C00),
+                  ),
                   Text('Bencina'),
                   SizedBox(width: 18),
-                  Icon(Icons.ac_unit_rounded, size: 25),
+                  Icon(
+                    Icons.settings_input_component,
+                    size: 25,
+                    color: Color(0xFFE65C00),
+                  ),
                   Text('Manual'),
                   SizedBox(width: 18),
-                  Icon(Icons.ac_unit_rounded, size: 25),
+                  Icon(
+                    Icons.map,
+                    size: 25,
+                    color: Color(0xFFE65C00),
+                  ),
                   Text('30.972km'),
                   SizedBox(width: 18),
-                  Icon(Icons.ac_unit_rounded, size: 25),
+                  Icon(
+                    Icons.calendar_month,
+                    size: 25,
+                    color: Color(0xFFE65C00),
+                  ),
                   Text('2021'),
                   SizedBox(width: 18),
                 ],
@@ -478,7 +493,7 @@ class informacionAuto extends StatelessWidget {
             ),
 
             //boton de contactar
-            botonContactar(),
+            botonContactar3(),
 
             SizedBox(height: 15),
             //texto final
@@ -490,7 +505,7 @@ class informacionAuto extends StatelessWidget {
                   ' *La forma de contactar al vendedor es directo por whatsapp. ',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 10,
+                    fontSize: 15,
                   ),
                 ),
               ),

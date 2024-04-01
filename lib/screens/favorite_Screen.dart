@@ -9,37 +9,27 @@ class favoriteScreen extends StatelessWidget {
     return Scaffold(
         body: ListView(
           children: [
-            //app bar widget
-
-            /*  AppbarWidget(), */
-
             //category
             Container(
               margin: EdgeInsets.symmetric(vertical: 15),
               child: Padding(
-                padding: EdgeInsets.only(top: 20, left: 10),
+                padding: EdgeInsets.only(top: 20, left: 120),
                 child: Text(
                   'Tus favoritos',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    height: 1,
+                    color: Color(0xFF001FBC),
+                    fontFamily: 'Roboto',
+                    fontSize: 34.0,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w600,
                   ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20, left: 10),
-              child: Text(
-                'agregar tarjetas de autos favoritos',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
                 ),
               ),
             ),
 
             //Popular items Widget
-            PopularItemsWidget(),
+            NewestItemswidget2(),
           ],
         ),
         bottomNavigationBar: NavBar(currentRoute: 'favorito'));

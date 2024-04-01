@@ -18,22 +18,6 @@ class ubicacionScreen extends StatelessWidget {
               ),
             ),
 
-            // Otros widgets que desees en la pantalla
-            // Muestra el mapa de Google Maps dentro del contenedor
-            // Otros widgets que desees en la pantalla
-/* 
-            Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MapScreen()),
-                  );
-                },
-                child: Text('Mostrar mapa'),
-              ),
-            ), */
-
             //text Newest Items
             Padding(
               padding: EdgeInsets.only(top: 20, left: 10),

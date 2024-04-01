@@ -149,8 +149,9 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                       child: Padding(
                         padding: EdgeInsets.only(top: 20, left: 10),
                         child: Text(
-                          'agregar el primer titulo y los contenedores para subir la imagen',
+                          'Subir un nuevo auto',
                           style: TextStyle(
+                            color: Color(0xFFE65C00),
                             fontWeight: FontWeight.bold,
                             fontSize: 40,
                           ),
@@ -193,21 +194,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                         ),
                       ),
                     ),
-                    //texto de confot
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 15),
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 20, left: 10),
-                        child: Text(
-                          'Confort de Auto',
-                          style: TextStyle(
-                            color: Color(0xFF001996),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ),
+
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 15),
                       child: Padding(
@@ -698,6 +685,19 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                 SizedBox(height: 20),
 
                 ElevatedButton(
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(Size(352, 30)),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.fromLTRB(60, 20, 60, 20)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xFFE65C00)),
+                      foregroundColor:
+                          MaterialStateProperty.all(Color(0xFFEFF0F1)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(color: Color(0xFF001996), width: 1),
+                      )),
+                    ),
                     onPressed: () async {
                       //inputs text
                       String descripcion = _descripcion.text;
@@ -803,7 +803,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
                       // ignore: use_build_context_synchronously
                       mostrarErrorConAlertDialog(context, 'Error inesperado');
                     },
-                    child: Text('Crear Perfil')),
+                    child: Text('Publicar auto')),
                 SizedBox(height: 50),
               ],
             ),

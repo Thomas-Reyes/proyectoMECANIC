@@ -70,7 +70,7 @@ class TxtRecuperacion extends StatelessWidget {
               children: [
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: size.width * 0.15),
+                    padding: EdgeInsets.only(left: size.width * 0.25, top: 150),
                     child: Text(
                       '¿Olvidaste tu contraseña?',
                       style: TextStyle(

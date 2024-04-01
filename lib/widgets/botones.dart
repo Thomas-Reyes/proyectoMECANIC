@@ -260,12 +260,9 @@ class BtnUbicacion extends StatelessWidget {
               children: [
                 SizedBox(),
                 ElevatedButton(
-                  onPressed: () {
-                    /* Navigator.pushNamed(
-                        context, 'login'); */ // Acción cuando se presiona el botón
-                  },
+                  onPressed: () {},
                   style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(352, 20)),
+                    minimumSize: MaterialStateProperty.all(Size(352, 40)),
                     padding: MaterialStateProperty.all(
                         EdgeInsets.fromLTRB(60, 10, 60, 10)),
                     backgroundColor:
@@ -528,8 +525,8 @@ class botonContactar extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 150,
-          height: 30,
+          width: 250,
+          height: 40,
           decoration: BoxDecoration(
             color: Color(0xFFE65C00),
             borderRadius: BorderRadius.circular(30),
@@ -552,6 +549,53 @@ class botonContactar extends StatelessWidget {
               child: const Center(
                 child: Text(
                   "Dale un Vistazo",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class botonContactar3 extends StatelessWidget {
+/*   const Pantalla_InicioScreen({Key? key}) : super(key: key); */
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Column(
+      children: [
+        Container(
+          width: 250,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Color(0xFFE65C00),
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, 'informacionAuto');
+              },
+              borderRadius: BorderRadius.circular(30),
+              child: const Center(
+                child: Text(
+                  "Contactar al vendedor",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
